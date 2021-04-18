@@ -7,7 +7,7 @@ import javax.persistence.Id
 
 @Entity
 data class Address(
-        @Id @GeneratedValue(strategy = GenerationType.AUTO)
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Int? = null,
         val street: String,
         val city: String,
