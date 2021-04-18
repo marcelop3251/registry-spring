@@ -2,7 +2,7 @@ package com.registry.registryspring
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.registry.extensions.payload
-import com.registry.registryspring.domain.entity.Client
+import com.registry.registryspring.domain.entity.Customer
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.*
 
@@ -30,8 +30,8 @@ class RegistrySpringApplicationTests(
 	fun when_called_post_should_return_content_and_201(){
 		val entity = restTemplate.postForEntity(
 				"/register-client",
-				jacksonObjectMapper().readValue("registry-client.json".payload(),Client::class.java),
-				Client::class.java
+				jacksonObjectMapper().readValue("registry-client.json".payload(),Customer::class.java),
+				Customer::class.java
 				)
 
 		assertNotNull(entity.body)

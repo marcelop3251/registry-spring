@@ -1,23 +1,21 @@
 package com.registry.registryspring.domain.service.implementation
 
-import com.registry.registryspring.domain.entity.Client
+import com.registry.registryspring.domain.entity.Customer
 import com.registry.registryspring.domain.service.Services
-import com.registry.registryspring.resources.repositories.ClientRepository
+import com.registry.registryspring.resources.repositories.CustomerRepository
 import org.springframework.stereotype.Service
 
 @Service
 class RegisterServices(
-        private val repository: ClientRepository
-) : Services<Client> {
+        private val repository: CustomerRepository
+) : Services<Customer> {
 
-
-
-    override fun save(entity: Client): Client {
+    override fun save(entity: Customer): Customer {
        return repository.save(entity)
     }
 
-    override fun findAll(): List<Client> {
-        return repository.findAll()
+    override fun findById(id: Int): Customer {
+        return repository.findCustomerById(id)
     }
 
 }

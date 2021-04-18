@@ -3,11 +3,11 @@ package com.registry.registryspring.domain.entity
 import javax.persistence.*
 
 @Entity
-data class Client(
+data class Customer(
         @Id @GeneratedValue(strategy = GenerationType.AUTO)
         val id: Int? = null,
         val name:String,
         val age: Int,
-        @OneToOne(cascade = arrayOf(CascadeType.ALL))
+        @OneToOne(cascade = [CascadeType.ALL])
         val address: Address
 )

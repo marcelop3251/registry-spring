@@ -1,26 +1,25 @@
 package com.registry.registryspring.application.web
 
-import com.registry.registryspring.domain.entity.Client
+import com.register.application.web.entities.CustomerResponse
+import com.registry.registryspring.domain.entity.Customer
 import com.registry.registryspring.domain.service.Services
+import javax.websocket.server.PathParam
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
 class RegistryController(
-        private val service: Services<Client>
+        private val service: Services<Customer>
 ) {
 
-
-    @GetMapping("/registry-client")
-    fun listClients(): List<Client> {
-        return service.findAll()
+    @GetMapping("/registry-customer/{id}")
+    fun getCustomerById(@PathVariable id: Int): CustomerResponse {
+        return CustomerResponse(service.findById(id))
     }
 
-    @PostMapping("/registry-client")
+    @PostMapping("/registry-customer")
     @ResponseStatus(value = HttpStatus.CREATED)
-    fun registerClient(@RequestBody client: Client) : Client{
-        print(client.toString())
-        return service.save(client)
-
+    fun registerClient(@RequestBody client: Customer) : CustomerResponse {
+        return CustomerResponse(service.save(client))
     }
 }
