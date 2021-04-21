@@ -1,5 +1,6 @@
 package com.registry.registryspring.application.web
 
+import com.register.application.web.entities.CustomerRequest
 import com.register.application.web.entities.CustomerResponse
 import com.registry.registryspring.domain.entity.Customer
 import com.registry.registryspring.domain.service.Services
@@ -19,7 +20,7 @@ class RegistryController(
 
     @PostMapping("/registry-customer")
     @ResponseStatus(value = HttpStatus.CREATED)
-    fun registerClient(@RequestBody client: Customer) : CustomerResponse {
-        return CustomerResponse(service.save(client))
+    fun registerClient(@RequestBody client: CustomerRequest) : CustomerResponse {
+        return CustomerResponse(service.save(client.toModel()))
     }
 }
